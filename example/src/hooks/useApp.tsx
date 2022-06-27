@@ -81,6 +81,7 @@ export const useApp = () => {
   const getVideoStatus = () => {
     DrmVideoDownloader.getDownloadableInfo(videoRequestModel).then(
       (videoInfo) => {
+        console.log(videoInfo)
         setVideoInfo(videoInfo);
       }
     );
@@ -158,6 +159,7 @@ export const useApp = () => {
   };
 
   const getProgressText = () => {
+    console.log(videoInfo)
     if (videoInfo) {
       switch (videoInfo.state) {
         case DRMVideoState.STATE_DOWNLOADING:

@@ -183,6 +183,7 @@ android {
         pickFirst "lib/x86/libc++_shared.so"
         pickFirst "lib/x86_64/libc++_shared.so"
     }
+      ndkVersion "21.0.6113669"
 }
 
 dependencies {
