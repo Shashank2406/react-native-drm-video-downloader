@@ -12,7 +12,7 @@ class DownloadDrmVideoManager{
     //
   }
   private constructor(){
-
+//    initial()
   }
 
   private object Holder {
@@ -36,6 +36,9 @@ class DownloadDrmVideoManager{
 
   fun download(context: Context, mediaItem: MediaItem?, keyRequestProperty: Map<String, String>?){
     mediaItem?.let {
+      initial(context)
+//      var downloadTracker = Utils.getDownloadTracker(context.applicationContext)
+      println("Hi $downloadTracker")
       val renderersFactory: RenderersFactory = Utils.buildRenderersFactory( /* context= */ context, false)
       downloadTracker?.download(mediaItem = mediaItem, renderersFactory = renderersFactory, keyRequestProperty =  keyRequestProperty )
     }

@@ -62,8 +62,10 @@ class DrmVideoDownloaderModule : ReactContextBaseJavaModule, DownloadTracker.Lis
   @ReactMethod
   fun download(params: ReadableMap, promise: Promise) {
     val videoRequestModel = Utils.getVideoRequestModelFrom(params)
+    Log.d("TAG", "message")
     if (Utils.isValidRequest(videoRequestModel)) {
       var mediaItem = videoRequestModel?.toMediaItem()
+      println("num Value is $mediaItem ")
       DownloadDrmVideoManager.getInstance().download(reactApplicationContext, mediaItem, keyRequestProperty = videoRequestModel?.getRequestPropertyHeaders())
       promise.resolve(null)
     } else {

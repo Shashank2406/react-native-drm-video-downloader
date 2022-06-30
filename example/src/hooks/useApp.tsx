@@ -27,14 +27,14 @@ export const useApp = () => {
     setVideoRequestModel({
       id: 'b4d51cd8-adb3-4eed-bd18-e417944a5d3c',
       licenseUrl:
-        'https://mvvuni.keydelivery.southeastasia.media.azure.net/FairPlay/?kid=7360f352-d459-475e-9351-970970b378e4',
+        'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test',
       url:
-        'https://mvvuni-aase.streaming.media.azure.net/f12053ab-1009-43dd-8e6e-44b1ba5000ed/Big_Buck_Bunny_30s.ism/manifest(format=mpd-time-csf,encryption=cenc)',
+        'https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_uhd.mpd',
       scheme: 'widevine',
-      drmLicenseRequestHeaders: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJiNGQ1MWNkOC1hZGIzLTRlZWQtYmQxOC1lNDE3OTQ0YTVkM2MiLCJuYmYiOjE2MDgyMDE3MzgsImV4cCI6MTYwODIwNTYzOCwiaXNzIjoiaHR0cHM6Ly90b3BjbGFzLmNvbS52biIsImF1ZCI6InRvcGNsYXNzIn0.FcPVT1eVw9-Cr0w459SFfplSSv9xGud4brfqO1rTrso',
-      },
+      // drmLicenseRequestHeaders: {
+      //   Authorization:
+      //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJiNGQ1MWNkOC1hZGIzLTRlZWQtYmQxOC1lNDE3OTQ0YTVkM2MiLCJuYmYiOjE2MDgyMDE3MzgsImV4cCI6MTYwODIwNTYzOCwiaXNzIjoiaHR0cHM6Ly90b3BjbGFzLmNvbS52biIsImF1ZCI6InRvcGNsYXNzIn0.FcPVT1eVw9-Cr0w459SFfplSSv9xGud4brfqO1rTrso',
+      // },
       title: 'Demo video',
       isProtected: true,
     });
