@@ -29,7 +29,7 @@ export const useApp = () => {
       licenseUrl:
         'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test',
       url:
-        'https://storage.googleapis.com/wvmedia/cenc/h264/tears/tears_uhd.mpd',
+        'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd',
       scheme: 'widevine',
       // drmLicenseRequestHeaders: {
       //   Authorization:
@@ -79,6 +79,9 @@ export const useApp = () => {
   }, []);
 
   const getVideoStatus = () => {
+    DrmVideoDownloader.isDownloaded(videoRequestModel).then((res) => {
+      console.log(123,res)
+    })
     DrmVideoDownloader.getDownloadableInfo(videoRequestModel).then(
       (videoInfo) => {
         console.log(videoInfo)

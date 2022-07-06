@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import DrmVideoDownloader from 'react-native-drm-video-downloader';
 import { useApp } from './hooks/useApp';
+import Video, { DRMType } from 'react-native-video';
 
 export default function App() {
   const AppHook = useApp();
@@ -47,6 +48,25 @@ export default function App() {
       >
         {AppHook.getProgressText()}
       </Text>
+      {/* <Video
+                volume={10}
+                autoPlay={true}
+                isLandscape={false}
+                posterResizeMode="stretch"
+                style={ { width: '100%', height: '50%' }}
+                drm={{
+                  licenseServer: 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test',
+                  // certificateUrl: CertificateUrl,
+                  type: DRMType.WIDEVINE,
+                  // headers: {
+                  //   'x-dt-auth-token': drmToken,
+                  // },
+                  drmOfflineMediaId: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd',
+                  drmKeySetId: '[107, 115, 105, 100, 66, 53, 51, 66, 68, 65, 56, 54]'
+                }}
+                source={{
+                  uri: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd'}}
+              /> */}
     </View>
   );
 }
