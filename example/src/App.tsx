@@ -62,7 +62,7 @@ export default function App() {
                   //   'x-dt-auth-token': drmToken,
                   // },
                   drmOfflineMediaId: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd',
-                  drmKeySetId: '[107, 115, 105, 100, 66, 53, 51, 66, 68, 65, 56, 54]'
+                  drmKeySetId: 'ksid1ADDC12E'
                 }}
                 source={{
                   uri: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd'}}

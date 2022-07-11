@@ -25,33 +25,33 @@ export const useApp = () => {
 
   const createModelForAndroid = () => {
     setVideoRequestModel({
-      id: 'b4d51cd8-adb3-4eed-bd18-e417944a5d3c',
+      // id: 'b4d51cd8-adb3-4eed-bd18-e417944a5d3c',
       licenseUrl:
-        'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test',
+        'https://lic.drmtoday.com/license-proxy-widevine/cenc/?specConform=true',
       url:
-        'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd',
+        'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/dash/master.mpd',
       scheme: 'widevine',
-      // drmLicenseRequestHeaders: {
-      //   Authorization:
-      //     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJiNGQ1MWNkOC1hZGIzLTRlZWQtYmQxOC1lNDE3OTQ0YTVkM2MiLCJuYmYiOjE2MDgyMDE3MzgsImV4cCI6MTYwODIwNTYzOCwiaXNzIjoiaHR0cHM6Ly90b3BjbGFzLmNvbS52biIsImF1ZCI6InRvcGNsYXNzIn0.FcPVT1eVw9-Cr0w459SFfplSSv9xGud4brfqO1rTrso',
-      // },
+      drmLicenseRequestHeaders: {
+        'x-dt-auth-token':
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjNjJjZTAzOS02MTgzLTQ5MWYtYjU0Yi0xZWY0ZmI0NzYxYzlcIn0iLCJpYXQiOjE2NTc1MTc2NjAsImp0aSI6ImVPNWJDV2lpSHR4amM1UHViOHlYNlE9PSJ9.4SXXK0CWJiYCvfQw_L4ZS7L1xGHReSKtkMMl3f2PeR-WsQm_-pfBD7VYBdJ9m9v-2t5Ug8RyKBN5e_ZI8syQYw',
+      },
       title: 'Demo video',
-      isProtected: true,
+      // isProtected: false,
     });
   };
 
   const createModelForiOS = () => {
     setVideoRequestModel({
       id: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
-      licenseUrl: 'https://mvvuni.keydelivery.southeastasia.media.azure.net/FairPlay/?kid=e851bf95-3011-42c2-9556-33856c6ad0a6',
-      url: 'https://mvvuni-aase.streaming.media.azure.net/72948a45-7fd9-4c6a-b527-8574d67ffb45/MVV_Uni_Trailer_2_d4f65e15_7f40_.ism/manifest(format=m3u8-aapl,encryption=cbcs-aapl)',
+      licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/',
+      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8',
       scheme: 'fairplay',
       drmLicenseRequestHeaders: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJlODUxYmY5NS0zMDExLTQyYzItOTU1Ni0zMzg1NmM2YWQwYTYiLCJuYmYiOjE2MTkwNjQ5MzcsImV4cCI6MTYxOTA2ODgzNywiaXNzIjoiaHR0cHM6Ly90b3BjbGFzLmNvbS52biIsImF1ZCI6InRvcGNsYXNzIn0.I59jbz_nLxZ3S2_K4ievh7yGTf27TUOg8N-OMTeNFy0',
+        'x-dt-auth-token':
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjNjJjZTAzOS02MTgzLTQ5MWYtYjU0Yi0xZWY0ZmI0NzYxYzlcIn0iLCJpYXQiOjE2NTc1MTc2NjAsImp0aSI6ImVPNWJDV2lpSHR4amM1UHViOHlYNlE9PSJ9.4SXXK0CWJiYCvfQw_L4ZS7L1xGHReSKtkMMl3f2PeR-WsQm_-pfBD7VYBdJ9m9v-2t5Ug8RyKBN5e_ZI8syQYw',
       },
       contentKeyIds: [
-        'skd://mvvuni-aase.streaming.media.azure.net/FairPlay/?kid=e851bf95-3011-42c2-9556-33856c6ad0a6'
+        'https://lic.drmtoday.com/license-server-fairplay/cert/qnet'
       ],
       title: 'Demo video',
       isProtected: true,
@@ -65,33 +65,34 @@ export const useApp = () => {
   }, [videoRequestModel]);
 
   useEffect(() => {
+    if (videoInfo) {
+      console.log(videoInfo);
+    }
+  }, [videoInfo]);
+
+  useEffect(() => {
     var eventEmitter = new NativeEventEmitter(NativeModules.DrmVideoDownloader);
     var eventListenerSub = eventEmitter.addListener(
       DRMVideoEventName,
       (info?: DRMVideoInfo) => {
-        console.log('info', info);
+        // console.log('info', info);
         setVideoInfo(info);
       }
     );
     return () => {
-      return eventListenerSub.remove();
+      // return eventListenerSub.remove();
     };
   }, []);
 
   const getVideoStatus = () => {
-    DrmVideoDownloader.isDownloaded(videoRequestModel).then((res) => {
-      console.log(123,res)
-    })
     DrmVideoDownloader.getDownloadableInfo(videoRequestModel).then(
       (videoInfo) => {
-        console.log(videoInfo)
         setVideoInfo(videoInfo);
       }
     );
   };
 
   const download = () => {
-    console.log('start download video');
     DrmVideoDownloader.download(videoRequestModel).finally(() => {
       getVideoStatus();
     });
