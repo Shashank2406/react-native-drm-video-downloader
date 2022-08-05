@@ -96,12 +96,16 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         var ckcData: Data? = nil
         let drmUrl = currentAsset?.stream.licenseUrl ?? ""
         let semaphore = DispatchSemaphore(value: 0)
-        let postString = "spc=\(spcData.base64EncodedString())&assetId=\(assetID)"
+        var allowedCharacters = NSCharacterSet.urlQueryAllowed
+               allowedCharacters.remove(charactersIn: "+/=\\")
+               
+               let encodedString = spcData.base64EncodedString().addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
+        let postString = "spc=\(spcData.base64EncodedString())"
         
         if let postData = postString.data(using: .ascii, allowLossyConversion: true), let drmServerUrl = URL(string: drmUrl) {
             var request = URLRequest(url: drmServerUrl)
             request.httpMethod = "POST"
-            request.setValue(String(postData.count), forHTTPHeaderField: "Content-Length")
+//            request.setValue(String(postData.count), forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             if let headers = self.currentAsset?.stream.header {
                 for keyItem in headers.allKeys {
@@ -110,7 +114,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
                     request.setValue(value, forHTTPHeaderField: key)
                 }
             }
-            request.httpBody = postData
+            request.httpBody = "spc=\(encodedString)".data(using: .utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
@@ -156,7 +160,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         for identifier in asset.stream.contentKeyIDList ?? [] {
             
             guard let contentKeyIdentifierURL = URL(string: identifier) else { continue }
-            guard let assetIDString = contentKeyIdentifierURL.queryParameters?["kid"] ?? contentKeyIdentifierURL.host else { continue }
+            guard let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host else { continue }
             pendingPersistableContentKeyIdentifiers.insert(assetIDString)
             contentKeyToStreamNameMap[assetIDString] = asset.stream.name
             ContentKeyManager.shared.contentKeySession.processContentKeyRequest(withIdentifier: identifier, initializationData: nil, options: nil)
@@ -246,7 +250,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
     func handleStreamingContentKeyRequest(keyRequest: AVContentKeyRequest) {
         guard let contentKeyIdentifierString = keyRequest.identifier as? String,
             let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
-            let assetIDString = contentKeyIdentifierURL.queryParameters?["kid"] ?? contentKeyIdentifierURL.host,
+            let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host,
             let assetIDData = assetIDString.data(using: .utf8)
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")

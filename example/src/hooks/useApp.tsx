@@ -33,7 +33,7 @@ export const useApp = () => {
       scheme: 'widevine',
       drmLicenseRequestHeaders: {
         'x-dt-auth-token':
-          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjNjJjZTAzOS02MTgzLTQ5MWYtYjU0Yi0xZWY0ZmI0NzYxYzlcIn0iLCJpYXQiOjE2NTc1MTc2NjAsImp0aSI6ImVPNWJDV2lpSHR4amM1UHViOHlYNlE9PSJ9.4SXXK0CWJiYCvfQw_L4ZS7L1xGHReSKtkMMl3f2PeR-WsQm_-pfBD7VYBdJ9m9v-2t5Ug8RyKBN5e_ZI8syQYw',
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjZGE1M2Y3Ny0wMDYyLTRjZmUtYTIwOS04OTFiN2VmYmJlZjhcIn0iLCJpYXQiOjE2NTc5NjgxNzYsImp0aSI6ImdzMjJ3RXh5MTkxdjJLOGgzY2NKM1E9PSJ9.Us5a6Am_ZEJBTq7Dxuh2etXrHvK50-QSpltsmEY0LrXjmOX2AQVS86zGNuz2wgnywb2wGOXQCXPSTqag-CgfMw',
       },
       title: 'Demo video',
       // isProtected: false,
@@ -48,13 +48,13 @@ export const useApp = () => {
       scheme: 'fairplay',
       drmLicenseRequestHeaders: {
         'x-dt-auth-token':
-          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjNjJjZTAzOS02MTgzLTQ5MWYtYjU0Yi0xZWY0ZmI0NzYxYzlcIn0iLCJpYXQiOjE2NTc1MTc2NjAsImp0aSI6ImVPNWJDV2lpSHR4amM1UHViOHlYNlE9PSJ9.4SXXK0CWJiYCvfQw_L4ZS7L1xGHReSKtkMMl3f2PeR-WsQm_-pfBD7VYBdJ9m9v-2t5Ug8RyKBN5e_ZI8syQYw',
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI4ODI2Y2FjZS0wYTk4LTQ1NjgtYTZkMy1kNTcwYTNiZTkxZjFcIn0iLCJpYXQiOjE2NTk2ODY5ODEsImp0aSI6IlBaRFVHek9RcGJKN255MHFKVlZKcnc9PSJ9.bdXwd8s_e9xi6A5duC41FjJMGX0IVbxOpXcAS-rm5JwThOzvjRLiZrF5O8uBiYd480S4Nl9D14YzdFsGFMFbzQ',
       },
       contentKeyIds: [
-        'https://lic.drmtoday.com/license-server-fairplay/cert/qnet'
+        'skd://drmtoday?assetId=014926A0&variantId=vod'
       ],
       title: 'Demo video',
-      isProtected: true,
+      // isProtected: true,
     });
   };
 

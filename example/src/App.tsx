@@ -50,22 +50,25 @@ export default function App() {
       </Text>
       {/* <Video
                 volume={10}
-                autoPlay={true}
-                isLandscape={false}
+                autoPlay={false}
+                isLandscape={true}
                 posterResizeMode="stretch"
                 style={ { width: '100%', height: '50%' }}
+                onError={(err) => {
+                  console.log('VideoPlayer Error', err);
+                }}
                 drm={{
-                  licenseServer: 'https://proxy.uat.widevine.com/proxy?video_id=2015_tears&provider=widevine_test',
-                  // certificateUrl: CertificateUrl,
-                  type: DRMType.WIDEVINE,
+                  // licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
+                  // certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
+                  // type: DRMType.FAIRPLAY,
                   // headers: {
-                  //   'x-dt-auth-token': drmToken,
+                  //   'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkZDQ2ZGQ2My1mZjEwLTQ2NTQtODRjMi0wZjcxYjA3NWU0NzRcIn0iLCJpYXQiOjE2NTgzMDI2MjUsImp0aSI6IkFKeVpWVzRCUFRsR3BsMGZJUThlWXc9PSJ9.BNdbgNuTgFgrM5L-nKDt2pjoAs5nGBUs9nW8emUYA5ZjBBoEdeGbFkHW_kYhgVG8JDj_JCyCIFT66adtYQaf7A',
                   // },
-                  drmOfflineMediaId: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd',
-                  drmKeySetId: 'ksid1ADDC12E'
+                  drmOfflineMediaId: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
+                  drmKeySetId: 'e851bf95-3011-42c2-9556-33856c6ad0a6'
                 }}
                 source={{
-                  uri: 'https://storage.googleapis.com/wvmedia/cenc/vp9/subsample/24fps/tears/tears.mpd'}}
+                  uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8'}}
               /> */}
     </View>
   );

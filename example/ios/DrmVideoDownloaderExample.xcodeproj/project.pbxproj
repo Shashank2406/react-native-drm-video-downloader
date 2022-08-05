@@ -12,8 +12,8 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		167DD801C731892C8A8337BC /* libPods-DrmVideoDownloaderExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 790D65D5552204CD1D54E0EC /* libPods-DrmVideoDownloaderExample.a */; };
 		20F357B024636CDF00C146DC /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F357AF24636CDF00C146DC /* File.swift */; };
+		EF85A66DC2ADF02DAC7337D4 /* libPods-DrmVideoDownloaderExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F594A4DA15A3243A1D303B9 /* libPods-DrmVideoDownloaderExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,13 +26,13 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DrmVideoDownloaderExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DrmVideoDownloaderExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DrmVideoDownloaderExample/main.m; sourceTree = "<group>"; };
+		1EF477AA24CFA3C12053FA6F /* Pods-DrmVideoDownloaderExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.debug.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.debug.xcconfig"; sourceTree = "<group>"; };
+		1F594A4DA15A3243A1D303B9 /* libPods-DrmVideoDownloaderExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DrmVideoDownloaderExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F357AD24636CDE00C146DC /* DrmVideoDownloaderExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrmVideoDownloaderExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		20F357AE24636CDF00C146DC /* DrmVideoDownloaderExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DrmVideoDownloaderExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		20F357AF24636CDF00C146DC /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		790D65D5552204CD1D54E0EC /* libPods-DrmVideoDownloaderExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DrmVideoDownloaderExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9ABF29C27171157F56C1017 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.debug.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.debug.xcconfig"; sourceTree = "<group>"; };
-		E32CC98D2579D82D2B0107C5 /* Pods-DrmVideoDownloaderExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.release.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F25A6EA6F6E35EE46590D074 /* Pods-DrmVideoDownloaderExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.release.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				167DD801C731892C8A8337BC /* libPods-DrmVideoDownloaderExample.a in Frameworks */,
+				EF85A66DC2ADF02DAC7337D4 /* libPods-DrmVideoDownloaderExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		1CFFDEF7170271C97B8B7E5A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D9ABF29C27171157F56C1017 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */,
-				E32CC98D2579D82D2B0107C5 /* Pods-DrmVideoDownloaderExample.release.xcconfig */,
+				1EF477AA24CFA3C12053FA6F /* Pods-DrmVideoDownloaderExample.debug.xcconfig */,
+				F25A6EA6F6E35EE46590D074 /* Pods-DrmVideoDownloaderExample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				790D65D5552204CD1D54E0EC /* libPods-DrmVideoDownloaderExample.a */,
+				1F594A4DA15A3243A1D303B9 /* libPods-DrmVideoDownloaderExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DrmVideoDownloaderExample" */;
 			buildPhases = (
-				7DBB850C79C407F6FA5D3E58 /* [CP] Check Pods Manifest.lock */,
+				DDFE4D327EA50AAFAEE0AB52 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -198,7 +198,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		7DBB850C79C407F6FA5D3E58 /* [CP] Check Pods Manifest.lock */ = {
+		DDFE4D327EA50AAFAEE0AB52 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,7 +269,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9ABF29C27171157F56C1017 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */;
+			baseConfigurationReference = 1EF477AA24CFA3C12053FA6F /* Pods-DrmVideoDownloaderExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -301,7 +301,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E32CC98D2579D82D2B0107C5 /* Pods-DrmVideoDownloaderExample.release.xcconfig */;
+			baseConfigurationReference = F25A6EA6F6E35EE46590D074 /* Pods-DrmVideoDownloaderExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
