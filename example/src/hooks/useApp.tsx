@@ -33,7 +33,7 @@ export const useApp = () => {
       scheme: 'widevine',
       drmLicenseRequestHeaders: {
         'x-dt-auth-token':
-          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJjZGE1M2Y3Ny0wMDYyLTRjZmUtYTIwOS04OTFiN2VmYmJlZjhcIn0iLCJpYXQiOjE2NTc5NjgxNzYsImp0aSI6ImdzMjJ3RXh5MTkxdjJLOGgzY2NKM1E9PSJ9.Us5a6Am_ZEJBTq7Dxuh2etXrHvK50-QSpltsmEY0LrXjmOX2AQVS86zGNuz2wgnywb2wGOXQCXPSTqag-CgfMw',
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJmOTljYWQ4Ni0yMzg2LTQyYmMtODJiNC0yOGU4NTcwNDk4YWFcIn0iLCJpYXQiOjE2NTk3ODE3NTAsImp0aSI6IjBSaGQzTkFPQUh2eXRHa3F5WkVzZ3c9PSJ9.0UcmAjrrMcFi-iWjsv1eF6jAEcyTR26i-kczhvbGvJVSA2ourRXxJYwShPXWHKvlxzcJBRA98JUoEfVzDk0KfQ',
       },
       title: 'Demo video',
       // isProtected: false,
@@ -43,18 +43,18 @@ export const useApp = () => {
   const createModelForiOS = () => {
     setVideoRequestModel({
       id: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
-      licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/',
-      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8',
+      licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/?offline=true',
+      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage01/hbo/the_powerpuff_girls_s3_07_bought_and_scold/hls/master.m3u8',
       scheme: 'fairplay',
       drmLicenseRequestHeaders: {
         'x-dt-auth-token':
-          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI4ODI2Y2FjZS0wYTk4LTQ1NjgtYTZkMy1kNTcwYTNiZTkxZjFcIn0iLCJpYXQiOjE2NTk2ODY5ODEsImp0aSI6IlBaRFVHek9RcGJKN255MHFKVlZKcnc9PSJ9.bdXwd8s_e9xi6A5duC41FjJMGX0IVbxOpXcAS-rm5JwThOzvjRLiZrF5O8uBiYd480S4Nl9D14YzdFsGFMFbzQ',
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjoxMmE2ZGVmZC1lYzhkLTQ2MmQtYmM3Ny03MDg1Y2RkMDEyN2JcIixcImFzc2V0SWRcIjpcIjAyMTg2NFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiMTJhNmRlZmQtZWM4ZC00NjJkLWJjNzctNzA4NWNkZDAxMjdiXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCIxYWQwYzcyOS0xMmNhLTQxNjgtYWRhNi03OTBhZjlmMjVjODdcIn0iLCJpYXQiOjE2NjAxNDE3MTUsImp0aSI6IkRudGd3XC9lOFBYZFRDZXJ6dnJIbkhRPT0ifQ.yQMX_JFtIjmy0V8mZds_iyxoamE4wXHpEev_9Eis0dmJrPI02WTYkgXzTLqiZdBxCHqI3_b9o5BRhihy7NJZaQ',
       },
       contentKeyIds: [
-        'skd://drmtoday?assetId=014926A0&variantId=vod'
+        'skd://drmtoday?assetId=021858X0&variantId=vod',
       ],
       title: 'Demo video',
-      // isProtected: true,
+      isProtected: true,
     });
   };
 

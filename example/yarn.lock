@@ -3560,9 +3560,9 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-"react-native-video@git+https://github.com/dgmteam/react-native-video.git#feature/play-drm-video":
+"react-native-video@git+https://github.com/dgmteam/react-native-video.git#master":
   version "5.1.0-alpha8"
-  resolved "git+https://github.com/dgmteam/react-native-video.git#081a3925782c72ec4be8587b40cf0e2a9e423945"
+  resolved "git+https://github.com/dgmteam/react-native-video.git#4d0dec641f42e69eab2c40e9eea674a835ff1e4b"
   dependencies:
     keymirror "^0.1.1"
     prop-types "^15.7.2"

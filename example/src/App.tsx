@@ -48,7 +48,7 @@ export default function App() {
       >
         {AppHook.getProgressText()}
       </Text>
-      {/* <Video
+      <Video
                 volume={10}
                 autoPlay={false}
                 isLandscape={true}
@@ -58,18 +58,17 @@ export default function App() {
                   console.log('VideoPlayer Error', err);
                 }}
                 drm={{
-                  // licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
-                  // certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
-                  // type: DRMType.FAIRPLAY,
-                  // headers: {
-                  //   'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkZDQ2ZGQ2My1mZjEwLTQ2NTQtODRjMi0wZjcxYjA3NWU0NzRcIn0iLCJpYXQiOjE2NTgzMDI2MjUsImp0aSI6IkFKeVpWVzRCUFRsR3BsMGZJUThlWXc9PSJ9.BNdbgNuTgFgrM5L-nKDt2pjoAs5nGBUs9nW8emUYA5ZjBBoEdeGbFkHW_kYhgVG8JDj_JCyCIFT66adtYQaf7A',
-                  // },
+                  licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
+                  certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
+                  type: DRMType.FAIRPLAY,
+                  headers: {
+                    'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCIxODU3NWIxOC05ZmQxLTRiMTItYWI2ZS1lYTYxMzRiZWM1YTVcIn0iLCJpYXQiOjE2NTk4MTQ4MTQsImp0aSI6ImIzUSs4RDBvcFVUWmkyS0xVQlNGdmc9PSJ9.45LjkGkWN-zOka5wZ9WFmheQFARaFx1_23nrAtKTnPeQ_oTuck4JZ-jmta7DbcGw4PZBxIWc9yOzFM7j6YAoiQ',
+                  },
                   drmOfflineMediaId: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
-                  drmKeySetId: 'e851bf95-3011-42c2-9556-33856c6ad0a6'
                 }}
                 source={{
-                  uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8'}}
-              /> */}
+                  uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage01/hbo/the_powerpuff_girls_s3_07_bought_and_scold/hls/master.m3u8'}}
+              />
     </View>
   );
 }
