@@ -49,7 +49,7 @@ extension ContentKeyDelegate {
          */
         guard let contentKeyIdentifierString = keyIdentifier as? String,
             let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
-            let assetIDString = contentKeyIdentifierURL.queryParameters?["kid"] ?? contentKeyIdentifierURL.host
+            let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")
                 return
@@ -79,8 +79,8 @@ extension ContentKeyDelegate {
          */
         guard let contentKeyIdentifierString = keyRequest.identifier as? String,
             let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
-            let assetIDString = contentKeyIdentifierURL.queryParameters?["kid"] ?? contentKeyIdentifierURL.host,
-            let assetIDData = assetIDString.data(using: .utf8)
+            let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host,
+            let assetIDData = contentKeyIdentifierString.data(using: .utf8)
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")
                 return
@@ -101,7 +101,7 @@ extension ContentKeyDelegate {
                 
                 do {
                     // Send SPC to Key Server and obtain CKC
-                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, assetID: assetIDString)
+                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
                     
                     let persistentKey = try keyRequest.persistableContentKey(fromKeyVendorResponse: ckcData, options: nil)
                     
@@ -185,7 +185,7 @@ extension ContentKeyDelegate {
     /// - Parameter asset: The `Asset` value to remove keys for.
     func deleteAllPeristableContentKeys(forAsset asset: Asset) {
         for contentKeyIdentifier in asset.stream.contentKeyIDList ?? [] {
-            let items = contentKeyIdentifier.components(separatedBy: "kid=")
+            let items = contentKeyIdentifier.components(separatedBy: "assetId=")
             if (items.count >= 2){
                 deletePeristableContentKey(withContentKeyIdentifier: items[1])
             }
@@ -196,7 +196,7 @@ extension ContentKeyDelegate {
     func persistableContentKeyExistsOnDisk(forAsset asset: Asset) -> Bool {
         var contentKeyIdentifier = "";
         for contentKeyId in asset.stream.contentKeyIDList ?? [] {
-            let items = contentKeyId.components(separatedBy: "kid=")
+            let items = contentKeyId.components(separatedBy: "assetId=")
             if (items.count >= 2){
                 contentKeyIdentifier = items[1]
             }

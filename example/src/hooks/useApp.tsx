@@ -43,18 +43,18 @@ export const useApp = () => {
   const createModelForiOS = () => {
     setVideoRequestModel({
       id: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
-      licenseUrl: 'https://mvvuni.keydelivery.southeastasia.media.azure.net/FairPlay/?kid=e851bf95-3011-42c2-9556-33856c6ad0a6',
-      url: 'https://mvvuni-aase.streaming.media.azure.net/72948a45-7fd9-4c6a-b527-8574d67ffb45/MVV_Uni_Trailer_2_d4f65e15_7f40_.ism/manifest(format=m3u8-aapl,encryption=cbcs-aapl)',
+      licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/?offline=true',
+      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage01/hbo/the_powerpuff_girls_s3_07_bought_and_scold/hls/master.m3u8',
       scheme: 'fairplay',
       drmLicenseRequestHeaders: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cm46bWljcm9zb2Z0OmF6dXJlOm1lZGlhc2VydmljZXM6Y29udGVudGtleWlkZW50aWZpZXIiOiJlODUxYmY5NS0zMDExLTQyYzItOTU1Ni0zMzg1NmM2YWQwYTYiLCJuYmYiOjE2MTkwNjQ5MzcsImV4cCI6MTYxOTA2ODgzNywiaXNzIjoiaHR0cHM6Ly90b3BjbGFzLmNvbS52biIsImF1ZCI6InRvcGNsYXNzIn0.I59jbz_nLxZ3S2_K4ievh7yGTf27TUOg8N-OMTeNFy0',
+        'x-dt-auth-token':
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAyMTg2NFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI2OGEyNzdkYS05ZjdiLTQ4ZGUtYjg4MC02MTUxZjk4Njc4YzNcIn0iLCJpYXQiOjE2NjAxMTE1NzksImp0aSI6IkxxVUN3ZUVqN2Z5SVJGcVRPaDZiK3c9PSJ9.-f0EFAVT1_9qmfmUHvZGQYP5oWX1DRz7mJK3ciUA7kRR6TnE_g6EK_DKKCAp59i4NlLoiOMwpf4W1ZjSLa0gBw',
       },
       contentKeyIds: [
-        'skd://mvvuni-aase.streaming.media.azure.net/FairPlay/?kid=e851bf95-3011-42c2-9556-33856c6ad0a6'
+        'skd://drmtoday?assetId=014926A0&variantId=vod'
       ],
       title: 'Demo video',
-      isProtected: true,
+       isProtected: true,
     });
   };
 
