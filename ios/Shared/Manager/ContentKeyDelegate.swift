@@ -81,7 +81,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         return applicationCertificate!
     }
     
-    func requestContentKeyFromKeySecurityModule(spcData: Data) throws -> Data {
+    func requestContentKeyFromKeySecurityModule(spcData: Data, drmToken: String) throws -> Data {
         
         
         var ckcData: Data? = nil
@@ -97,7 +97,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
             request.httpMethod = "POST"
             request.setValue(String(spcData.count), forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjoxMmE2ZGVmZC1lYzhkLTQ2MmQtYmM3Ny03MDg1Y2RkMDEyN2JcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiMTJhNmRlZmQtZWM4ZC00NjJkLWJjNzctNzA4NWNkZDAxMjdiXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkOTZhNTRlNC1jNTllLTQ4ZDUtYWY0Yi0zNWE2ZGZiMDM3ZTdcIn0iLCJpYXQiOjE2NjAyMDgwMDgsImp0aSI6Imo3UmJHbkczOWMybHR6bVo0WmFSXC9RPT0ifQ.DtBigB4zyPLCDwil74jAnSuqu1ikBkgmxxKlat_u2nK9vSqQkYS4G7rIbiqV_gZ52M-FilXS_An6UFf3StBe1w", forHTTPHeaderField: "x-dt-auth-token")
+            request.setValue(drmToken, forHTTPHeaderField: "x-dt-auth-token")
         
             request.httpBody = "spc=\(encodedString)".data(using: .utf8)
             
@@ -302,7 +302,28 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
                 /*
                  Send SPC to Key Server and obtain CKC.
                 */
-                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
+                
+                // Hack to recieve drm token vikas
+                guard let url = URL(string: "https://api.uat.msky.vn/evergent-gateway/getDRMToken?assetID=\(assetIDString)&type=vod&serviceID=hbo&duration=756456&storeLicense=true") else {
+                    return
+                }
+                var urlRequest = URLRequest(url: url)
+                urlRequest.setValue( "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkZXZpY2VUeXBlIjoidW5rbm93biIsImxvYyI6IklOIiwiYXBpS2V5IjoiUDV0R3p1bXlGN3dqVDVjaGcyMTJHN2c3RkJ1S2V2MVEiLCJ2c3RhdHVzIjpmYWxzZSwibG9naW5UeXBlIjoiQ29udGFjdFVzZXJOYW1lIiwiaXNzIjoiZXYiLCJtb2RlbE5vIjoidW5rbm93biIsImNwIjoiTVNLWSIsImRldmljZU5hbWUiOiJ1bmtub3duIiwic2lkIjoiMjIwNTI3MDUxMzU3MjEyNjY0OTU0NjAiLCJzZXJpYWxObyI6InVua25vd24iLCJ1aWQiOiI4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2UiLCJhdWQiOiJNU0tZIiwibmJmIjoxNjYwMjk3MTkyLCJleHAiOjE2NjI4ODkxOTcsImlhdCI6MTY2MDI5NzE5NywianRpIjoibXBJNC1nQzMzLVRLSHEtSEtUSS1nWVI5LUJieDUtOTYiLCJjaWQiOiI2NzIwNDE5OSJ9.aAmcwSC5fZYppQmECVKGXAtAEaYsA6F2P5kCOYyOMjo2A9EJri-Lt19PfBk_7LZ3KT4cdSDHMmt_aUQ5XZEtKaJNt2oi8uqfCD2gtsWj8bx8F7-nUvdZp8wb6EFgJqDDXC6AEXgrePEpinHJyjSQnxZruKOKNNSDRHyaMb-uKBJ55vSrGKOYf7Oxdyn0jimZCAqUbADEp9fxDU9ra2CZCFqhK045fqtp9pNbu7SIyWJyOJHIDfKgngWfopiiuNS5dh8zUenudFS1dXQTzA3Wj6YpNoIE4biEav6l2KDYfVZD4sduJ4QuHOhWm9Onmb7Ya3IFur0e4zad2eCQCzrvPg", forHTTPHeaderField: "Authorization")
+
+                
+                let (data, response, error) = URLSession.shared.synchronousDataTask(urlRequest: urlRequest)
+
+                
+                if error != nil || data == nil  {
+                    print("error in gettting drm token please change bearer token than execute again \(self) ")
+                }
+ 
+                let decoder = JSONDecoder()
+                let welcome =  try? decoder.decode(Welcome.self, from: data!)
+                
+            
+                
+                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: welcome!.data.drmtoken)
 
                 
                 /*
@@ -347,5 +368,29 @@ extension URL {
         return queryItems.reduce(into: [String: String]()) { (result, item) in
             result[item.name] = item.value
         }
+    }
+}
+
+
+extension URLSession {
+    func synchronousDataTask(urlRequest: URLRequest) -> (data: Data?, response: URLResponse?, error: Error?) {
+        var data: Data?
+        var response: URLResponse?
+        var error: Error?
+
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let dataTask = self.dataTask(with: urlRequest) {
+            data = $0
+            response = $1
+            error = $2
+
+            semaphore.signal()
+        }
+        dataTask.resume()
+
+        _ = semaphore.wait(timeout: .distantFuture)
+
+        return (data, response, error)
     }
 }

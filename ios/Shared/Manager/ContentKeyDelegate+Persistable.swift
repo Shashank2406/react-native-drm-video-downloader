@@ -99,9 +99,29 @@ extension ContentKeyDelegate {
                 
                 guard let spcData = spcData else { return }
                 
+                
+                // Hack to recieve drm token vikas
+                guard let url = URL(string: "https://api.uat.msky.vn/evergent-gateway/getDRMToken?assetID=\(assetIDString)&type=vod&serviceID=hbo&duration=756456&storeLicense=true") else {
+                    return
+                }
+                var urlRequest = URLRequest(url: url)
+                urlRequest.setValue( "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkZXZpY2VUeXBlIjoidW5rbm93biIsImxvYyI6IklOIiwiYXBpS2V5IjoiUDV0R3p1bXlGN3dqVDVjaGcyMTJHN2c3RkJ1S2V2MVEiLCJ2c3RhdHVzIjpmYWxzZSwibG9naW5UeXBlIjoiQ29udGFjdFVzZXJOYW1lIiwiaXNzIjoiZXYiLCJtb2RlbE5vIjoidW5rbm93biIsImNwIjoiTVNLWSIsImRldmljZU5hbWUiOiJ1bmtub3duIiwic2lkIjoiMjIwNTI3MDUxMzU3MjEyNjY0OTU0NjAiLCJzZXJpYWxObyI6InVua25vd24iLCJ1aWQiOiI4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2UiLCJhdWQiOiJNU0tZIiwibmJmIjoxNjYwMjk3MTkyLCJleHAiOjE2NjI4ODkxOTcsImlhdCI6MTY2MDI5NzE5NywianRpIjoibXBJNC1nQzMzLVRLSHEtSEtUSS1nWVI5LUJieDUtOTYiLCJjaWQiOiI2NzIwNDE5OSJ9.aAmcwSC5fZYppQmECVKGXAtAEaYsA6F2P5kCOYyOMjo2A9EJri-Lt19PfBk_7LZ3KT4cdSDHMmt_aUQ5XZEtKaJNt2oi8uqfCD2gtsWj8bx8F7-nUvdZp8wb6EFgJqDDXC6AEXgrePEpinHJyjSQnxZruKOKNNSDRHyaMb-uKBJ55vSrGKOYf7Oxdyn0jimZCAqUbADEp9fxDU9ra2CZCFqhK045fqtp9pNbu7SIyWJyOJHIDfKgngWfopiiuNS5dh8zUenudFS1dXQTzA3Wj6YpNoIE4biEav6l2KDYfVZD4sduJ4QuHOhWm9Onmb7Ya3IFur0e4zad2eCQCzrvPg", forHTTPHeaderField: "Authorization")
+
+                
+                let (data, response, error) = URLSession.shared.synchronousDataTask(urlRequest: urlRequest)
+
+                
+                if error != nil || data == nil  {
+                    print("error in gettting drm token please change bearer token than execute again \(self) ")
+                }
+ 
+                let decoder = JSONDecoder()
+                let welcome =  try? decoder.decode(Welcome.self, from: data!)
+                
+                
                 do {
                     // Send SPC to Key Server and obtain CKC
-                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
+                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: welcome!.data.drmtoken)
                     
                     let persistentKey = try keyRequest.persistableContentKey(fromKeyVendorResponse: ckcData, options: nil)
                     
@@ -267,4 +287,17 @@ extension Notification.Name {
      The notification that is posted when all the content keys for a given asset have been saved to disk.
      */
     static let DidSaveAllPersistableContentKey = Notification.Name("ContentKeyDelegateDidSaveAllPersistableContentKey")
+}
+
+
+// MARK: - Welcome
+struct Welcome: Codable {
+    let status: Bool
+    let message: String
+    let data: DataClass
+}
+
+// MARK: - DataClass
+struct DataClass: Codable {
+    let drmtoken: String
 }
