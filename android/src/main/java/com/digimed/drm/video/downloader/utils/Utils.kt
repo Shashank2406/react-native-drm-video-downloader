@@ -42,7 +42,7 @@ class Utils private constructor(){
     private var downloadTracker: DownloadTracker? = null
     private var downloadNotificationHelper: DownloadNotificationHelper? = null
 
-
+    
     fun setup(dataSourceFactory:DataSource.Factory?,downloadCache: Cache?, downloadDirectory:  File? = null ,databaseProvider: DatabaseProvider?,
               httpDataSourceFactory:  HttpDataSource.Factory?){
       this.dataSourceFactory= dataSourceFactory
@@ -51,7 +51,7 @@ class Utils private constructor(){
       this.databaseProvider = databaseProvider
       this.httpDataSourceFactory = httpDataSourceFactory
     }
-
+    
     /** Returns whether extension renderers should be used.  */
     fun useExtensionRenderers(): Boolean {
       return false
@@ -111,7 +111,6 @@ class Utils private constructor(){
     @Synchronized
     private fun getDownloadCache(context: Context): Cache? {
       if (downloadCache == null) {
-        Log.d(TAG, "initial getDownloadCache ")
         val downloadContentDirectory = File(getDownloadDirectory(context), Constants.DOWNLOAD_CONTENT_DIRECTORY)
         downloadCache = SimpleCache(
           downloadContentDirectory, NoOpCacheEvictor(), getDatabaseProvider(context)!!)

@@ -11,7 +11,6 @@ import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEm
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.offline.Download
 import com.google.android.exoplayer2.offline.DownloadManager
-import com.google.android.exoplayer2.util.Log
 import java.lang.Exception
 import javax.annotation.Nullable
 
@@ -19,6 +18,7 @@ import javax.annotation.Nullable
 class DrmVideoDownloaderModule : ReactContextBaseJavaModule, DownloadTracker.Listener{
   private val TAG = "DrmVideoDownloaderModule"
   constructor(reactContext: ReactApplicationContext) : super(reactContext) {
+    DownloadDrmVideoManager.getInstance().initial(reactContext)
   }
 
   override fun getName(): String {
@@ -60,12 +60,10 @@ class DrmVideoDownloaderModule : ReactContextBaseJavaModule, DownloadTracker.Lis
   }
 
   @ReactMethod
-  fun download(params: ReadableMap, promise: Promise) {
+    fun download(params: ReadableMap, promise: Promise) {
     val videoRequestModel = Utils.getVideoRequestModelFrom(params)
-    Log.d("TAG", "message")
     if (Utils.isValidRequest(videoRequestModel)) {
       var mediaItem = videoRequestModel?.toMediaItem()
-      println("num Value is $mediaItem ")
       DownloadDrmVideoManager.getInstance().download(reactApplicationContext, mediaItem, keyRequestProperty = videoRequestModel?.getRequestPropertyHeaders())
       promise.resolve(null)
     } else {

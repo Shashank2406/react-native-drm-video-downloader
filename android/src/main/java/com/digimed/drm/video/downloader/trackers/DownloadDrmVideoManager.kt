@@ -9,10 +9,10 @@ import com.google.android.exoplayer2.offline.Download
 
 class DownloadDrmVideoManager{
   init {
-    //
+      //
   }
   private constructor(){
-//    initial()
+
   }
 
   private object Holder {
@@ -26,19 +26,14 @@ class DownloadDrmVideoManager{
     }
   }
 
-  fun initial(context: Context?){
-    if (downloadTracker == null){
-      context?.let {
-        this.downloadTracker = Utils.getDownloadTracker(context.applicationContext)
-      }
-    }
+   fun initial(context: Context?){
+     context?.let {
+       this.downloadTracker = Utils.getDownloadTracker(context)
+     }
   }
 
   fun download(context: Context, mediaItem: MediaItem?, keyRequestProperty: Map<String, String>?){
     mediaItem?.let {
-      initial(context)
-//      var downloadTracker = Utils.getDownloadTracker(context.applicationContext)
-      println("Hi $downloadTracker")
       val renderersFactory: RenderersFactory = Utils.buildRenderersFactory( /* context= */ context, false)
       downloadTracker?.download(mediaItem = mediaItem, renderersFactory = renderersFactory, keyRequestProperty =  keyRequestProperty )
     }
