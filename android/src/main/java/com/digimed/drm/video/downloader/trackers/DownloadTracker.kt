@@ -111,7 +111,7 @@ class DownloadTracker : DownloadManager.Listener, StartDownloadHelper.Listener {
       val drmSessionManager: DefaultDrmSessionManager = DefaultDrmSessionManager.Builder()
         .setUuidAndExoMediaDrmProvider(drmSchemeUuid, FrameworkMediaDrm.DEFAULT_PROVIDER)
         .build(drmCallback)
-      val startDownloadHelper = StartDownloadHelper(this.context?.applicationContext, mediaItem, drmSessionManager, DownloadHelper.forMediaItem(
+      this.startDownloadHelper = StartDownloadHelper(this.context?.applicationContext, mediaItem, drmSessionManager, DownloadHelper.forMediaItem(
         mediaItem, DownloadHelper.getDefaultTrackSelectorParameters(context!!), renderersFactory, httpDataSourceFactory), this)
       startTrackingProgressChanged()
     }
