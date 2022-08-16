@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D1336C0461A88D01186E375 /* libPods-DrmVideoDownloaderExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCEA90A70F4BEAD7E9FA28B2 /* libPods-DrmVideoDownloaderExample.a */; };
+		0DDFDEA4138F08B31BCA811D /* libPods-DrmVideoDownloaderExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACE289CDEE8D818AA053396 /* libPods-DrmVideoDownloaderExample.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -26,12 +26,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DrmVideoDownloaderExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DrmVideoDownloaderExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DrmVideoDownloaderExample/main.m; sourceTree = "<group>"; };
+		1826126CAA3E8F1B5BCA7390 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.debug.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.debug.xcconfig"; sourceTree = "<group>"; };
 		20F357AD24636CDE00C146DC /* DrmVideoDownloaderExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DrmVideoDownloaderExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		20F357AE24636CDF00C146DC /* DrmVideoDownloaderExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DrmVideoDownloaderExample-Bridging-Header.h"; sourceTree = "<group>"; };
 		20F357AF24636CDF00C146DC /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		4D7192F03A36A017E887435B /* Pods-DrmVideoDownloaderExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.release.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.release.xcconfig"; sourceTree = "<group>"; };
-		871719007ECC5EAD276C345C /* Pods-DrmVideoDownloaderExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.debug.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.debug.xcconfig"; sourceTree = "<group>"; };
-		BCEA90A70F4BEAD7E9FA28B2 /* libPods-DrmVideoDownloaderExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DrmVideoDownloaderExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C72D82030BC772800C124FCD /* Pods-DrmVideoDownloaderExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DrmVideoDownloaderExample.release.xcconfig"; path = "Target Support Files/Pods-DrmVideoDownloaderExample/Pods-DrmVideoDownloaderExample.release.xcconfig"; sourceTree = "<group>"; };
+		EACE289CDEE8D818AA053396 /* libPods-DrmVideoDownloaderExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DrmVideoDownloaderExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D1336C0461A88D01186E375 /* libPods-DrmVideoDownloaderExample.a in Frameworks */,
+				0DDFDEA4138F08B31BCA811D /* libPods-DrmVideoDownloaderExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +65,8 @@
 		1CFFDEF7170271C97B8B7E5A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				871719007ECC5EAD276C345C /* Pods-DrmVideoDownloaderExample.debug.xcconfig */,
-				4D7192F03A36A017E887435B /* Pods-DrmVideoDownloaderExample.release.xcconfig */,
+				1826126CAA3E8F1B5BCA7390 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */,
+				C72D82030BC772800C124FCD /* Pods-DrmVideoDownloaderExample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				BCEA90A70F4BEAD7E9FA28B2 /* libPods-DrmVideoDownloaderExample.a */,
+				EACE289CDEE8D818AA053396 /* libPods-DrmVideoDownloaderExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DrmVideoDownloaderExample" */;
 			buildPhases = (
-				CCCC07BCAFDEF1FCADC0D0C9 /* [CP] Check Pods Manifest.lock */,
+				6EB1FF85B3844C2BD40A895E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -145,7 +145,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 48S7F62GMG;
+						DevelopmentTeam = K35K3JUU2U;
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 					};
@@ -198,7 +198,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		CCCC07BCAFDEF1FCADC0D0C9 /* [CP] Check Pods Manifest.lock */ = {
+		6EB1FF85B3844C2BD40A895E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,7 +269,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 871719007ECC5EAD276C345C /* Pods-DrmVideoDownloaderExample.debug.xcconfig */;
+			baseConfigurationReference = 1826126CAA3E8F1B5BCA7390 /* Pods-DrmVideoDownloaderExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -277,7 +277,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 48S7F62GMG;
+				DEVELOPMENT_TEAM = K35K3JUU2U;
 				INFOPLIST_FILE = DrmVideoDownloaderExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -289,7 +289,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.digimed.drmvideodownloadersample2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msky.demoapp;
 				PRODUCT_NAME = DrmVideoDownloaderExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DrmVideoDownloaderExample-Bridging-Header.h";
@@ -301,14 +301,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D7192F03A36A017E887435B /* Pods-DrmVideoDownloaderExample.release.xcconfig */;
+			baseConfigurationReference = C72D82030BC772800C124FCD /* Pods-DrmVideoDownloaderExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K35K3JUU2U;
 				INFOPLIST_FILE = DrmVideoDownloaderExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_CFLAGS = (
@@ -320,7 +320,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.DrmVideoDownloaderExample.DrmVideoDownloaderExample-new";
+				PRODUCT_BUNDLE_IDENTIFIER = com.msky.demoapp;
 				PRODUCT_NAME = DrmVideoDownloaderExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DrmVideoDownloaderExample-Bridging-Header.h";
