@@ -10,6 +10,7 @@ import Video, { DRMType } from 'react-native-video-offline-playback';
 
 import DrmVideoDownloader from 'react-native-drm-video-downloader';
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
+import Video, { DRMType } from 'react-native-video-offline-playback';
 
 export const useApp = () => {
   const [videoRequestModel, setVideoRequestModel] = useState<

@@ -3527,9 +3527,9 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react-native-video@git+https://github.com/dgmteam/react-native-video.git#feature/play-drm-video":
-  "resolved" "git+ssh://git@github.com/dgmteam/react-native-video.git#081a3925782c72ec4be8587b40cf0e2a9e423945"
-  "version" "5.1.0-alpha8"
+"react-native-video-offline-playback@git+https://github.com/Shashank2406/react-native-video-offline-playback.git":
+  version "5.1.0-alpha8"
+  resolved "git+https://github.com/Shashank2406/react-native-video-offline-playback.git#e2bd68dd226b859591459f8e03b5ad582fcb48d0"
   dependencies:
     "keymirror" "^0.1.1"
     "prop-types" "^15.7.2"

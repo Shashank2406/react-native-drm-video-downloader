@@ -15,6 +15,25 @@ export default function App() {
     };
   }, []);
 
+  const onSave = () => {
+    var data = {
+      id: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
+      licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/',
+      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8',
+      scheme: 'fairplay',
+      drmLicenseRequestHeaders: {
+        'x-dt-auth-token':
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI4ODI2Y2FjZS0wYTk4LTQ1NjgtYTZkMy1kNTcwYTNiZTkxZjFcIn0iLCJpYXQiOjE2NTk2ODY5ODEsImp0aSI6IlBaRFVHek9RcGJKN255MHFKVlZKcnc9PSJ9.bdXwd8s_e9xi6A5duC41FjJMGX0IVbxOpXcAS-rm5JwThOzvjRLiZrF5O8uBiYd480S4Nl9D14YzdFsGFMFbzQ',
+      },
+      contentKeyIds: [
+        'skd://drmtoday?assetId=014926A0&variantId=vod'
+      ],
+      title: 'Demo video',
+      // isProtected: true,
+    }
+    this.player.save(data);
+  }
+
   return (
     <View>
       <TextItem
@@ -33,7 +52,7 @@ export default function App() {
             alignItems: 'center',
           },
         ]}
-        onPress={AppHook.controlDownloadVideo}
+        onPress={() => onSave()}
       >
         <Text>{AppHook.getButtonText()}</Text>
       </TouchableOpacity>
@@ -48,7 +67,7 @@ export default function App() {
       >
         {AppHook.getProgressText()}
       </Text>
-       <Video
+      <Video
                 volume={10}
                 autoPlay={false}
                 isLandscape={true}
@@ -57,19 +76,22 @@ export default function App() {
                 onError={(err) => {
                   console.log('VideoPlayer Error', err);
                 }}
-                drm={{
-                  licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
-                  certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
-                  type: DRMType.FAIRPLAY,
-                  headers: {
-                    'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkZDQ2ZGQ2My1mZjEwLTQ2NTQtODRjMi0wZjcxYjA3NWU0NzRcIn0iLCJpYXQiOjE2NTgzMDI2MjUsImp0aSI6IkFKeVpWVzRCUFRsR3BsMGZJUThlWXc9PSJ9.BNdbgNuTgFgrM5L-nKDt2pjoAs5nGBUs9nW8emUYA5ZjBBoEdeGbFkHW_kYhgVG8JDj_JCyCIFT66adtYQaf7A',
-                  },
-                  drmOfflineMediaId: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
-                  drmKeySetId: 'e851bf95-3011-42c2-9556-33856c6ad0a6'
+                ref={player => {
+                  this.player = player;
                 }}
-                source={{
-                  uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8'}}
-              /> 
+                // drm={{
+                //   // licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
+                //   // certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
+                //   // type: DRMType.FAIRPLAY,
+                //   // headers: {
+                //   //   'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkZDQ2ZGQ2My1mZjEwLTQ2NTQtODRjMi0wZjcxYjA3NWU0NzRcIn0iLCJpYXQiOjE2NTgzMDI2MjUsImp0aSI6IkFKeVpWVzRCUFRsR3BsMGZJUThlWXc9PSJ9.BNdbgNuTgFgrM5L-nKDt2pjoAs5nGBUs9nW8emUYA5ZjBBoEdeGbFkHW_kYhgVG8JDj_JCyCIFT66adtYQaf7A',
+                //   // },
+                //   drmOfflineMediaId: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
+                //   drmKeySetId: 'e851bf95-3011-42c2-9556-33856c6ad0a6'
+                // }}
+                // source={{
+                //   uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8'}}
+              />
     </View>
   );
 }
