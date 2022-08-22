@@ -6,7 +6,6 @@ import {
   DRMVideoInfo,
   DRMVideoEventName,
 } from 'react-native-drm-video-downloader';
-import Video, { DRMType } from 'react-native-video-offline-playback';
 
 import DrmVideoDownloader from 'react-native-drm-video-downloader';
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
@@ -91,7 +90,7 @@ export const useApp = () => {
 
   const download = () => {
     console.log('start download video');
-    Video.download(videoRequestModel).finally(() => {
+    DrmVideoDownloader.download(videoRequestModel).finally(() => {
       getVideoStatus();
     });
   };
