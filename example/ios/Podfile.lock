@@ -268,7 +268,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-drm-video-downloader (from `../..`)
-  - react-native-video (from `../node_modules/react-native-video`)
+  - react-native-video (from `../node_modules/react-native-video-offline-playback`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -318,7 +318,7 @@ EXTERNAL SOURCES:
   react-native-drm-video-downloader:
     :path: "../.."
   react-native-video:
-    :path: "../node_modules/react-native-video"
+    :path: "../node_modules/react-native-video-offline-playback"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -372,6 +372,6 @@ SPEC CHECKSUMS:
   ReactCommon: ed4e11d27609d571e7eee8b65548efc191116eb3
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
 
-PODFILE CHECKSUM: 1923ee3f92588626fc3a363c905d828a62a33783
+PODFILE CHECKSUM: 06298f72afc3d1c8ebb9a08076842c355ff98d0e
 
 COCOAPODS: 1.11.3

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import DrmVideoDownloader from 'react-native-drm-video-downloader';
 import { useApp } from './hooks/useApp';
-import Video, { DRMType } from 'react-native-video';
+import Video, { DRMType } from 'react-native-video-offline-playback';
 
 export default function App() {
   const AppHook = useApp();
@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <View>
-      {/* <TextItem
+      <TextItem
         leftText={'Name'}
         rightText={AppHook.videoRequestModel?.title}
       />
@@ -47,7 +47,7 @@ export default function App() {
         ]}
       >
         {AppHook.getProgressText()}
-      </Text> */}
+      </Text>
        <Video
                 volume={10}
                 autoPlay={false}
