@@ -108,6 +108,7 @@ class DrmVideoDownloaderModule : ReactContextBaseJavaModule, DownloadTracker.Lis
   @ReactMethod
   fun clearAllListener(){
     DownloadDrmVideoManager.getInstance().clearListener()
+    DownloadDrmVideoManager.getInstance().release()
   }
 
   override fun onDownloadChanged(downloadManager: DownloadManager?, download: Download?, keySetId: String?) {
