@@ -81,9 +81,9 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         return applicationCertificate!
     }
     
-    func requestContentKeyFromKeySecurityModule(spcData: Data, drmToken: String) throws -> Data {
+    func requestContentKeyFromKeySecurityModule(spcData: Data) throws -> Data {
         
-        
+        let drmToken = "eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAyMTg1OFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI0MDUyNjNmNi1hYTE1LTRkODMtYjI2NS02MzYwYjZhZDJmMzdcIn0iLCJpYXQiOjE2NjE3NzEwODEsImp0aSI6Imx5WlV6THVwZEZJUEZOblNleUFIQnc9PSJ9.7pQHi4rZyTaypzfwcv7agC7kf2hF5xKEIPDhv3oHiV17XhH8c7cmEZPjQh1LokWgGiUU9BE_obhBXYogaQHv8A"
         var ckcData: Data? = nil
         let drmUrl = "https://lic.drmtoday.com/license-server-fairplay/?offline=true"
         let semaphore = DispatchSemaphore(value: 0)
@@ -307,7 +307,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
             
                 print("key fron=m content key delegate")
             
-                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: "eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCIwN2Y3NDEwNi05NjA5LTQwODAtOGI1ZC0wMTgzM2FmNjM2NmVcIn0iLCJpYXQiOjE2NjE2ODM4MjEsImp0aSI6IlZjR0Z3SitWZWNMeVV3SGRKUDRDNHc9PSJ9.8Duac-6tt_5pUAWxHbzPXhlEyi2VmpmlR2Taa4atMihLrNKG0P6DXqA2dIuc5BLoqKSI2B-LpcioZ7iAhaTwQA")
+                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
 
                 
                 /*
