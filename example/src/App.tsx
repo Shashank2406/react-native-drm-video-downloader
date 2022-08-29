@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <View>
-      {/* <TextItem
+      <TextItem
         leftText={'Name'}
         rightText={AppHook.videoRequestModel?.title}
       />
@@ -47,7 +47,7 @@ export default function App() {
         ]}
       >
         {AppHook.getProgressText()}
-      </Text> */}
+      </Text>
        <Video
                 volume={10}
                 autoPlay={false}
@@ -58,17 +58,17 @@ export default function App() {
                   console.log('VideoPlayer Error', err);
                 }}
                 drm={{
-                  licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/',
-                  certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
-                  type: DRMType.FAIRPLAY,
-                  headers: {
-                    'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4ZTk4ZmExZC1kZWU4LTQ5NTEtYmIyNy1mMjBmZWRhNjMzYTRcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiOGU5OGZhMWQtZGVlOC00OTUxLWJiMjctZjIwZmVkYTYzM2E0XCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCJkZDQ2ZGQ2My1mZjEwLTQ2NTQtODRjMi0wZjcxYjA3NWU0NzRcIn0iLCJpYXQiOjE2NTgzMDI2MjUsImp0aSI6IkFKeVpWVzRCUFRsR3BsMGZJUThlWXc9PSJ9.BNdbgNuTgFgrM5L-nKDt2pjoAs5nGBUs9nW8emUYA5ZjBBoEdeGbFkHW_kYhgVG8JDj_JCyCIFT66adtYQaf7A',
-                  },
+                  // licenseServer: 'https://lic.drmtoday.com/license-server-fairplay/?offline=true',
+                  // certificateUrl: 'https://lic.drmtoday.com/license-server-fairplay/cert/qnet',
+                  // type: DRMType.FAIRPLAY,
+                  // headers: {
+                  //   'x-dt-auth-token': 'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAyMTg1OFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI2NGUwZmZlZi02MzBhLTQ5YTUtOTBlZC0wYmM3ZGM0OGIwM2NcIn0iLCJpYXQiOjE2NjE3NjQ0ODUsImp0aSI6ImxJcHZKT0V3SkYwaTVKbCtWdXNMXC93PT0ifQ.ZGnMDjozCgnqqYJIIfAVhCV66cv5TTRrClXI5kCo_kyuxfL1_UgR4NcYAPZPxY5WEcALeQ45XXlfe5mWI_hZVA',
+                  // },
                   drmOfflineMediaId: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
                   drmKeySetId: 'e851bf95-3011-42c2-9556-33856c6ad0a6'
                 }}
                 source={{
-                  uri: 'https://g33ojbkyqtvod.vcdn.cloud/storage02/hbo/12th_delaware_fixedbyqnetv1/hls/master.m3u8'}}
+                  uri: 'https://vodproduct.msky.vn/storage01/hbo/the_powerpuff_girls_s3_01_fallen_arches/hls/master.m3u8'}}
               /> 
     </View>
   );

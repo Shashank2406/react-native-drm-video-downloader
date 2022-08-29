@@ -104,7 +104,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
             
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
-                    print("The access token was expired.")
+                    print("The access token was expired")
                 }else if let data = data, var responseString = String(data: data, encoding: .utf8) {
                     responseString = responseString.replacingOccurrences(of: "<ckc>", with: "").replacingOccurrences(of: "</ckc>", with: "")
                     print("the ckc content is \(responseString)")
@@ -304,26 +304,10 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
                 */
                 
                 // Hack to recieve drm token vikas
-                guard let url = URL(string: "https://api.uat.msky.vn/evergent-gateway/getDRMToken?assetID=\(assetIDString)&type=vod&serviceID=hbo&duration=756456&storeLicense=true") else {
-                    return
-                }
-                var urlRequest = URLRequest(url: url)
-                urlRequest.setValue( "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkZXZpY2VUeXBlIjoidW5rbm93biIsImxvYyI6IklOIiwiYXBpS2V5IjoiUDV0R3p1bXlGN3dqVDVjaGcyMTJHN2c3RkJ1S2V2MVEiLCJ2c3RhdHVzIjpmYWxzZSwibG9naW5UeXBlIjoiQ29udGFjdFVzZXJOYW1lIiwiaXNzIjoiZXYiLCJtb2RlbE5vIjoidW5rbm93biIsImNwIjoiTVNLWSIsImRldmljZU5hbWUiOiJ1bmtub3duIiwic2lkIjoiMjIwNTI3MDUxMzU3MjEyNjY0OTU0NjAiLCJzZXJpYWxObyI6InVua25vd24iLCJ1aWQiOiI4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2UiLCJhdWQiOiJNU0tZIiwibmJmIjoxNjYwMjk3MTkyLCJleHAiOjE2NjI4ODkxOTcsImlhdCI6MTY2MDI5NzE5NywianRpIjoibXBJNC1nQzMzLVRLSHEtSEtUSS1nWVI5LUJieDUtOTYiLCJjaWQiOiI2NzIwNDE5OSJ9.aAmcwSC5fZYppQmECVKGXAtAEaYsA6F2P5kCOYyOMjo2A9EJri-Lt19PfBk_7LZ3KT4cdSDHMmt_aUQ5XZEtKaJNt2oi8uqfCD2gtsWj8bx8F7-nUvdZp8wb6EFgJqDDXC6AEXgrePEpinHJyjSQnxZruKOKNNSDRHyaMb-uKBJ55vSrGKOYf7Oxdyn0jimZCAqUbADEp9fxDU9ra2CZCFqhK045fqtp9pNbu7SIyWJyOJHIDfKgngWfopiiuNS5dh8zUenudFS1dXQTzA3Wj6YpNoIE4biEav6l2KDYfVZD4sduJ4QuHOhWm9Onmb7Ya3IFur0e4zad2eCQCzrvPg", forHTTPHeaderField: "Authorization")
-
-                
-                let (data, response, error) = URLSession.shared.synchronousDataTask(urlRequest: urlRequest)
-
-                
-                if error != nil || data == nil  {
-                    print("error in gettting drm token please change bearer token than execute again \(self) ")
-                }
- 
-                let decoder = JSONDecoder()
-                let welcome =  try? decoder.decode(Welcome.self, from: data!)
-                
             
-                
-                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: welcome!.data.drmtoken)
+                print("key fron=m content key delegate")
+            
+                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: "eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCIwN2Y3NDEwNi05NjA5LTQwODAtOGI1ZC0wMTgzM2FmNjM2NmVcIn0iLCJpYXQiOjE2NjE2ODM4MjEsImp0aSI6IlZjR0Z3SitWZWNMeVV3SGRKUDRDNHc9PSJ9.8Duac-6tt_5pUAWxHbzPXhlEyi2VmpmlR2Taa4atMihLrNKG0P6DXqA2dIuc5BLoqKSI2B-LpcioZ7iAhaTwQA")
 
                 
                 /*

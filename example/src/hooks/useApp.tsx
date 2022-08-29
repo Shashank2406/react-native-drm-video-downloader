@@ -44,14 +44,15 @@ export const useApp = () => {
     setVideoRequestModel({
       id: 'e851bf95-3011-42c2-9556-33856c6ad0a6',
       licenseUrl: 'https://lic.drmtoday.com/license-server-fairplay/?offline=true',
-      url: 'https://g33ojbkyqtvod.vcdn.cloud/storage01/hbo/the_powerpuff_girls_s3_07_bought_and_scold/hls/master.m3u8',
+      url: 'https://vodproduct.msky.vn/storage01/hbo/the_powerpuff_girls_s3_01_fallen_arches/hls/master.m3u8',
+      
       scheme: 'fairplay',
       drmLicenseRequestHeaders: {
         'x-dt-auth-token':
-          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjo4NTBjODUyYS0zZmQzLTQ0ODAtYjMxMC05ODY3N2MyNTVlN2VcIixcImFzc2V0SWRcIjpcIjAyMTg2NFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiODUwYzg1MmEtM2ZkMy00NDgwLWIzMTAtOTg2NzdjMjU1ZTdlXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI2OGEyNzdkYS05ZjdiLTQ4ZGUtYjg4MC02MTUxZjk4Njc4YzNcIn0iLCJpYXQiOjE2NjAxMTE1NzksImp0aSI6IkxxVUN3ZUVqN2Z5SVJGcVRPaDZiK3c9PSJ9.-f0EFAVT1_9qmfmUHvZGQYP5oWX1DRz7mJK3ciUA7kRR6TnE_g6EK_DKKCAp59i4NlLoiOMwpf4W1ZjSLa0gBw',
+          'eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAyMTg1OFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI2NGUwZmZlZi02MzBhLTQ5YTUtOTBlZC0wYmM3ZGM0OGIwM2NcIn0iLCJpYXQiOjE2NjE3NjQ0ODUsImp0aSI6ImxJcHZKT0V3SkYwaTVKbCtWdXNMXC93PT0ifQ.ZGnMDjozCgnqqYJIIfAVhCV66cv5TTRrClXI5kCo_kyuxfL1_UgR4NcYAPZPxY5WEcALeQ45XXlfe5mWI_hZVA',
       },
       contentKeyIds: [
-        'skd://drmtoday?assetId=014926A0&variantId=vod'
+        'skd://drmtoday?assetId=021858X0&variantId=vod'
       ],
       title: 'Demo video',
        isProtected: true,
