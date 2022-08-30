@@ -80,7 +80,7 @@ extension ContentKeyDelegate {
         guard let contentKeyIdentifierString = keyRequest.identifier as? String,
             let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
             let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host,
-            let assetIDData = assetIDString.data(using: .utf8)
+            let assetIDData = contentKeyIdentifierString.data(using: .utf8)
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")
                 return
@@ -101,7 +101,7 @@ extension ContentKeyDelegate {
                 
                 do {
                     // Send SPC to Key Server and obtain CKC
-                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, assetID: assetIDString)
+                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
                     
                     let persistentKey = try keyRequest.persistableContentKey(fromKeyVendorResponse: ckcData, options: nil)
                     

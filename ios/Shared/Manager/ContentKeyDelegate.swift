@@ -81,56 +81,45 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         return applicationCertificate!
     }
     
-    func requestContentKeyFromKeySecurityModule(spcData: Data, assetID: String) throws -> Data {
+    func requestContentKeyFromKeySecurityModule(spcData: Data) throws -> Data {
         
-//        // MARK: ADAPT - You must implement this method to request a CKC from your KSM.
-//
-//        let ckcData: Data? = nil
-//
-//        guard ckcData != nil else {
-//            throw ProgramError.noCKCReturnedByKSM
-//        }
-//
-//        return ckcData!
         
         var ckcData: Data? = nil
         let drmUrl = currentAsset?.stream.licenseUrl ?? ""
         let semaphore = DispatchSemaphore(value: 0)
-        var allowedCharacters = NSCharacterSet.urlQueryAllowed
-               allowedCharacters.remove(charactersIn: "+/=\\")
-               
-               let encodedString = spcData.base64EncodedString().addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
-        let postString = "spc=\(spcData.base64EncodedString())"
         
-        if let postData = postString.data(using: .ascii, allowLossyConversion: true), let drmServerUrl = URL(string: drmUrl) {
-            var request = URLRequest(url: drmServerUrl)
+        var allowedCharacters = NSCharacterSet.urlQueryAllowed
+        allowedCharacters.remove(charactersIn: "+/=\\")
+        
+        let encodedString = spcData.base64EncodedString().addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
+        
+        var request = URLRequest(url: URL(string: drmUrl)!) 
             request.httpMethod = "POST"
-//            request.setValue(String(postData.count), forHTTPHeaderField: "Content-Length")
+            request.setValue(String(spcData.count), forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            if let headers = self.currentAsset?.stream.header {
-                for keyItem in headers.allKeys {
-                    let key = keyItem as! String
-                    let value = headers.value(forKey: key) as? String
-                    request.setValue(value, forHTTPHeaderField: key)
-                }
-            }
+        if let headers = self.currentAsset?.stream.header {
+                        for keyItem in headers.allKeys {
+                            let key = keyItem as! String
+                            let value = headers.value(forKey: key) as? String
+                            request.setValue(value, forHTTPHeaderField: key)
+                        }
+                    }
             request.httpBody = "spc=\(encodedString)".data(using: .utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
-                    print("The access token was expired.")
+                    print("The access token was expired")
                 }else if let data = data, var responseString = String(data: data, encoding: .utf8) {
                     responseString = responseString.replacingOccurrences(of: "<ckc>", with: "").replacingOccurrences(of: "</ckc>", with: "")
                     print("the ckc content is \(responseString)")
-                    ckcData = Data(base64Encoded: responseString)
-                    } else {
-                        print("Error encountered while fetching FairPlay license for URL: \(drmUrl), \(error?.localizedDescription ?? "Unknown error")")
-                    }
+                  ckcData = Data(base64Encoded: responseString)
+                    
+                } else {
+                    print("Error encountered while fetching FairPlay license for URL: \(String(describing: drmUrl)), \(error?.localizedDescription ?? "Unknown error")")
+                }
                 semaphore.signal()
             }.resume()
-        } else {
-            fatalError("Invalid post data")
-        }
+    
         
         semaphore.wait()
         guard ckcData != nil else {
@@ -249,85 +238,108 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
     
     func handleStreamingContentKeyRequest(keyRequest: AVContentKeyRequest) {
         guard let contentKeyIdentifierString = keyRequest.identifier as? String,
-            let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
-            let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host,
-            let assetIDData = assetIDString.data(using: .utf8)
+              let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
+              let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host        else {
+            print("Failed to retrieve the assetID from the keyRequest!")
+            return
+        }
+        
+        guard let contentIdentifierData = contentKeyIdentifierString.data(using: .utf8) else {
+            return
+        }
+        
+        
+        if shouldRequestPersistableContentKey(withIdentifier: assetIDString) ||
+            persistableContentKeyExistsOnDisk(withContentKeyIdentifier: assetIDString) {
+            
+            // Request a Persistable Key Request.
+            do {
+                try keyRequest.respondByRequestingPersistableContentKeyRequestAndReturnError()
+            } catch {
+                
+                /*
+                 This case will occur when the client gets a key loading request from an AirPlay Session.
+                 You should answer the key request using an online key from your key server.
+                 */
+                provideOnlineKey(withKeyRequest: keyRequest, contentIdentifier: contentIdentifierData)
+            }
+            
+            return
+        }
+        provideOnlineKey(withKeyRequest: keyRequest, contentIdentifier: contentIdentifierData)
+
+    }
+    
+    func provideOnlineKey(withKeyRequest keyRequest: AVContentKeyRequest, contentIdentifier contentIdentifierData: Data) {
+        
+        
+        guard let contentKeyIdentifierString = keyRequest.identifier as? String, let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString)
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")
                 return
         }
+        
+        /*
+         Completion handler for makeStreamingContentKeyRequestData method.
+         1. Sends obtained SPC to Key Server
+         2. Receives CKC from Key Server
+         3. Makes content key response object (AVContentKeyResponse)
+         4. Provide the content key response object to make protected content available for processing
+        */
+        let getCkcAndMakeContentAvailable = { [weak self] (spcData: Data?, error: Error?) in
+            guard let strongSelf = self else { return }
+            
+            if let error = error {
+                /*
+                 Obtaining a content key response has failed.
+                 Report error to AVFoundation.
+                */
+                keyRequest.processContentKeyResponseError(error)
+                return
+            }
 
-        let provideOnlinekey: () -> Void = { () -> Void in
+            guard let spcData = spcData else { return }
 
             do {
-                let applicationCertificate = try self.requestApplicationCertificate()
+                
+                /*
+                 Send SPC to Key Server and obtain CKC.
+                */
+            
+                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
 
-                let completionHandler = { [weak self] (spcData: Data?, error: Error?) in
-                    guard let strongSelf = self else { return }
-                    if let error = error {
-                        keyRequest.processContentKeyResponseError(error)
-                        return
-                    }
+                
+                /*
+                 AVContentKeyResponse is used to represent the data returned from the key server when requesting a key for
+                 decrypting content.
+                 */
+                
+                let keyResponse = AVContentKeyResponse(fairPlayStreamingKeyResponseData: ckcData)
 
-                    guard let spcData = spcData else { return }
-
-                    do {
-                        // Send SPC to Key Server and obtain CKC
-                        let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, assetID: assetIDString)
-
-                        /*
-                         AVContentKeyResponse is used to represent the data returned from the key server when requesting a key for
-                         decrypting content.
-                         */
-                        let keyResponse = AVContentKeyResponse(fairPlayStreamingKeyResponseData: ckcData)
-
-                        /*
-                         Provide the content key response to make protected content available for processing.
-                         */
-                        keyRequest.processContentKeyResponse(keyResponse)
-                    } catch {
-                        keyRequest.processContentKeyResponseError(error)
-                    }
-                }
-
-                keyRequest.makeStreamingContentKeyRequestData(forApp: applicationCertificate,
-                                                              contentIdentifier: assetIDData,
-                                                              options: [AVContentKeyRequestProtocolVersionsKey: [1]],
-                                                              completionHandler: completionHandler)
+                
+                /*
+                 Provide the content key response to make protected content available for processing.
+                */
+                keyRequest.processContentKeyResponse(keyResponse)
             } catch {
+                
+                /*
+                 Report error to AVFoundation.
+                */
                 keyRequest.processContentKeyResponseError(error)
             }
         }
 
-        #if os(iOS)
-            /*
-             When you receive an AVContentKeyRequest via -contentKeySession:didProvideContentKeyRequest:
-             and you want the resulting key response to produce a key that can persist across multiple
-             playback sessions, you must invoke -respondByRequestingPersistableContentKeyRequest on that
-             AVContentKeyRequest in order to signal that you want to process an AVPersistableContentKeyRequest
-             instead. If the underlying protocol supports persistable content keys, in response your
-             delegate will receive an AVPersistableContentKeyRequest via -contentKeySession:didProvidePersistableContentKeyRequest:.
-             */
-            if shouldRequestPersistableContentKey(withIdentifier: assetIDString) ||
-                persistableContentKeyExistsOnDisk(withContentKeyIdentifier: assetIDString) {
-                
-                // Request a Persistable Key Request.
-                do {
-                    try keyRequest.respondByRequestingPersistableContentKeyRequestAndReturnError()
-                } catch {
 
-                    /*
-                    This case will occur when the client gets a key loading request from an AirPlay Session.
-                    You should answer the key request using an online key from your key server.
-                    */
-                    provideOnlinekey()
-                }
-                
-                return
-            }
-        #endif
-        
-        provideOnlinekey()
+        /*
+         Pass Content Id unicode string together with FPS Certificate to obtain content key request data for a specific combination of application and content.
+        */
+        let applicationCertificate = try? self.requestApplicationCertificate()
+        keyRequest.makeStreamingContentKeyRequestData(forApp: applicationCertificate!,
+                                                      contentIdentifier: contentIdentifierData,
+                                                      options: [AVContentKeyRequestProtocolVersionsKey: [1]],
+                                                      completionHandler: getCkcAndMakeContentAvailable)
+            
     }
 }
 
