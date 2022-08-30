@@ -307,7 +307,8 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
                 */
                 
                 // Hack to recieve drm token vikas
-        
+            
+                print("key fron=m content key delegate")
             
                 let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
 
