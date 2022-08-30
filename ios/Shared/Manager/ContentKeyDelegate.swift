@@ -81,11 +81,11 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
         return applicationCertificate!
     }
     
-    func requestContentKeyFromKeySecurityModule(spcData: Data, drmToken: String) throws -> Data {
+    func requestContentKeyFromKeySecurityModule(spcData: Data) throws -> Data {
         
         
         var ckcData: Data? = nil
-        let drmUrl = "https://lic.drmtoday.com/license-server-fairplay/?offline=true"
+        let drmUrl = currentAsset?.stream.licenseUrl ?? ""
         let semaphore = DispatchSemaphore(value: 0)
         
         var allowedCharacters = NSCharacterSet.urlQueryAllowed
@@ -97,10 +97,14 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
             request.httpMethod = "POST"
             request.setValue(String(spcData.count), forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue(drmToken, forHTTPHeaderField: "x-dt-auth-token")
-        
+        if let headers = self.currentAsset?.stream.header {
+                        for keyItem in headers.allKeys {
+                            let key = keyItem as! String
+                            let value = headers.value(forKey: key) as? String
+                            request.setValue(value, forHTTPHeaderField: key)
+                        }
+                    }
             request.httpBody = "spc=\(encodedString)".data(using: .utf8)
-            
             
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
@@ -269,8 +273,7 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
     func provideOnlineKey(withKeyRequest keyRequest: AVContentKeyRequest, contentIdentifier contentIdentifierData: Data) {
         
         
-        guard let contentKeyIdentifierString = keyRequest.identifier as? String, let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString),
-            let assetIDString = contentKeyIdentifierURL.queryParameters?["assetId"] ?? contentKeyIdentifierURL.host
+        guard let contentKeyIdentifierString = keyRequest.identifier as? String, let contentKeyIdentifierURL = URL(string: contentKeyIdentifierString)
             else {
                 print("Failed to retrieve the assetID from the keyRequest!")
                 return
@@ -304,10 +307,9 @@ class ContentKeyDelegate: NSObject, AVContentKeySessionDelegate {
                 */
                 
                 // Hack to recieve drm token vikas
+        
             
-                print("key fron=m content key delegate")
-            
-                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: "eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAxNDkyNkEwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCIwN2Y3NDEwNi05NjA5LTQwODAtOGI1ZC0wMTgzM2FmNjM2NmVcIn0iLCJpYXQiOjE2NjE2ODM4MjEsImp0aSI6IlZjR0Z3SitWZWNMeVV3SGRKUDRDNHc9PSJ9.8Duac-6tt_5pUAWxHbzPXhlEyi2VmpmlR2Taa4atMihLrNKG0P6DXqA2dIuc5BLoqKSI2B-LpcioZ7iAhaTwQA")
+                let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
 
                 
                 /*

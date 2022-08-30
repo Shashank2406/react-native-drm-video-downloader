@@ -104,7 +104,7 @@ extension ContentKeyDelegate {
                 
                 do {
                     // Send SPC to Key Server and obtain CKC
-                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData, drmToken: "eyJhbGciOiJIUzUxMiJ9.eyJjcnQiOiJbe1wiYWNjb3VudGluZ0lkXCI6XCJxbjpkZGMxM2JjNi0wNmZmLTQ5MmItOTFjNi0zODFjZTVlZTRhODBcIixcImFzc2V0SWRcIjpcIjAyMTg1OFgwXCIsXCJ2YXJpYW50SWRcIjpcInZvZFwiLFwicHJvZmlsZVwiOntcInB1cmNoYXNlXCI6e319LFwib3V0cHV0UHJvdGVjdGlvblwiOntcImRpZ2l0YWxcIjpmYWxzZSxcImFuYWxvZ3VlXCI6dHJ1ZSxcImVuZm9yY2VcIjp0cnVlfSxcInN0b3JlTGljZW5zZVwiOnRydWUsXCJyZWFsVGltZUV4cGlyYXRpb25cIjpmYWxzZX1dIiwib3B0RGF0YSI6IntcInVzZXJJZFwiOlwiZGRjMTNiYzYtMDZmZi00OTJiLTkxYzYtMzgxY2U1ZWU0YTgwXCIsXCJtZXJjaGFudFwiOlwicW5ldFwiLFwic2Vzc2lvbklkXCI6XCI2NGUwZmZlZi02MzBhLTQ5YTUtOTBlZC0wYmM3ZGM0OGIwM2NcIn0iLCJpYXQiOjE2NjE3NjQ0ODUsImp0aSI6ImxJcHZKT0V3SkYwaTVKbCtWdXNMXC93PT0ifQ.ZGnMDjozCgnqqYJIIfAVhCV66cv5TTRrClXI5kCo_kyuxfL1_UgR4NcYAPZPxY5WEcALeQ45XXlfe5mWI_hZVA")
+                    let ckcData = try strongSelf.requestContentKeyFromKeySecurityModule(spcData: spcData)
                     
                     let persistentKey = try keyRequest.persistableContentKey(fromKeyVendorResponse: ckcData, options: nil)
                     
