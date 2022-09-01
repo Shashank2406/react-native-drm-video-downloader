@@ -130,6 +130,8 @@ dependencies {
   implementation "com.google.android.exoplayer:exoplayer:$exo_player_version"
   implementation "com.google.android.exoplayer:extension-jobdispatcher:$exo_player_version"
   implementation "com.google.android.exoplayer:extension-cronet:$exo_player_version"
+  implementation("com.squareup.okhttp3:okhttp:4.9.2")
+  implementation("com.squareup.okhttp3:okhttp-urlconnection:4.9.2")
 
 
 }
