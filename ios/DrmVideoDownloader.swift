@@ -96,6 +96,22 @@ class DrmVideoDownloader: RCTEventEmitter {
         ContentKeyManager.shared.contentKeyDelegate.deleteAllPeristableContentKeys(forAsset: asset)
     }
 
+    @objc(pauseios:withResolver:withRejecter:)
+    func pauseios(params: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+                let videoRequestModel = Utils.getVideoRequestModelFrom(params: params)
+                let asset = videoRequestModel?.toAsset()
+                AssetPersistenceManager.sharedManager.pauseDownload(for: asset!)
+        resolve(true)
+    }
+    
+    @objc(resumeAllDownload:withResolver:withRejecter:)
+    func resumeAllDownload(params: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+                let videoRequestModel = Utils.getVideoRequestModelFrom(params: params)
+                let asset = videoRequestModel?.toAsset()
+                AssetPersistenceManager.sharedManager.resumeDownload(for: asset!)
+        resolve(true)
+    }
+
     @objc
     func registerTrackingEvent(){
         print("register tracking event")

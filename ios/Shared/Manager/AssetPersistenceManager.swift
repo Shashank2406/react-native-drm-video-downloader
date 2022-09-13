@@ -187,13 +187,29 @@ public class AssetPersistenceManager: NSObject {
     /// Cancels an AVAssetDownloadTask given an Asset.
     func cancelDownload(for asset: Asset) {
         var task: AVAggregateAssetDownloadTask?
-        
-        for (taskKey, assetVal) in activeDownloadsMap where asset == assetVal {
+        for (taskKey, assetVal) in activeDownloadsMap {
+                   task = taskKey
+                   break
+               }
+        task?.cancel()
+    }
+    func pauseDownload(for asset: Asset) {
+        var task: AVAggregateAssetDownloadTask?
+        for (taskKey, assetVal) in activeDownloadsMap {
+                   task = taskKey
+                   break
+               }
+        task?.suspend()
+    }
+    func resumeDownload(for asset: Asset) {
+        var task: AVAggregateAssetDownloadTask?
+        for (taskKey, assetVal) in activeDownloadsMap  {
             task = taskKey
             break
         }
-        task?.cancel()
+        task?.resume()
     }
+
 }
 
 /// Return the display names for the media selection options that are currently selected in the specified group
