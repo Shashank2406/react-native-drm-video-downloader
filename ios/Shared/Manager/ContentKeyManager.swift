@@ -19,20 +19,26 @@ class ContentKeyManager {
     // MARK: Properties.
     
     /// The instance of `AVContentKeySession` that is used for managing and preloading content keys.
-    let contentKeySession: AVContentKeySession
+    var contentKeySession: AVContentKeySession
     
     /**
      The instance of `ContentKeyDelegate` which conforms to `AVContentKeySessionDelegate` and is used to respond to content key requests from
      the `AVContentKeySession`
      */
-    let contentKeyDelegate: ContentKeyDelegate
+    var contentKeyDelegate: ContentKeyDelegate
     
     /// The DispatchQueue to use for delegate callbacks.
-    let contentKeyDelegateQueue = DispatchQueue(label: "com.digimed.drmvideodownloader")
+    var contentKeyDelegateQueue = DispatchQueue(label: "com.digimed.drmvideodownloader")
     
     // MARK: Initialization.
     
     private init() {
+        contentKeySession = AVContentKeySession(keySystem: .fairPlayStreaming)
+        contentKeyDelegate = ContentKeyDelegate()
+        contentKeySession.setDelegate(contentKeyDelegate, queue: contentKeyDelegateQueue)
+    }
+    
+    func createContentKeySession(){
         contentKeySession = AVContentKeySession(keySystem: .fairPlayStreaming)
         contentKeyDelegate = ContentKeyDelegate()
         contentKeySession.setDelegate(contentKeyDelegate, queue: contentKeyDelegateQueue)

@@ -36,6 +36,8 @@ class DrmVideoDownloader: RCTEventEmitter {
         if Utils.isValidRequest(videoRequestModel: videoRequestModel), let asset = videoRequestModel?.toAsset() {
             AssetListManager.sharedManager.add(asset: asset)
             if videoRequestModel?.isProtected ?? false{
+                self.deleteDownload(asset: asset)
+                ContentKeyManager.shared.createContentKeySession()
                 ContentKeyManager.shared.contentKeySession.addContentKeyRecipient(asset.urlAsset)
                 ContentKeyManager.shared.contentKeyDelegate.requestPersistableContentKeys(forAsset: asset)
             } else {
@@ -79,6 +81,7 @@ class DrmVideoDownloader: RCTEventEmitter {
             if state == .downloaded || state == .failed {
                 self.deleteDownload(asset: asset)
             } else {
+                self.deleteDownload(asset: asset)
                 self.cancelDownload(asset: asset)
             }
             resolve(true)
@@ -95,7 +98,7 @@ class DrmVideoDownloader: RCTEventEmitter {
         AssetPersistenceManager.sharedManager.deleteAsset(asset)
         ContentKeyManager.shared.contentKeyDelegate.deleteAllPeristableContentKeys(forAsset: asset)
     }
-
+    
     @objc(pauseios:withResolver:withRejecter:)
     func pauseios(params: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
                 let videoRequestModel = Utils.getVideoRequestModelFrom(params: params)
@@ -111,7 +114,7 @@ class DrmVideoDownloader: RCTEventEmitter {
                 AssetPersistenceManager.sharedManager.resumeDownload(for: asset!)
         resolve(true)
     }
-
+    
     @objc
     func registerTrackingEvent(){
         print("register tracking event")

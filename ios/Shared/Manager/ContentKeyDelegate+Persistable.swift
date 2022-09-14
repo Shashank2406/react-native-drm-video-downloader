@@ -187,7 +187,8 @@ extension ContentKeyDelegate {
         for contentKeyIdentifier in asset.stream.contentKeyIDList ?? [] {
             let items = contentKeyIdentifier.components(separatedBy: "assetId=")
             if (items.count >= 2){
-                deletePeristableContentKey(withContentKeyIdentifier: items[1])
+                let updatedItem = items[1].components(separatedBy: "&")
+                deletePeristableContentKey(withContentKeyIdentifier: updatedItem[0])
             }
             
         }
@@ -198,7 +199,8 @@ extension ContentKeyDelegate {
         for contentKeyId in asset.stream.contentKeyIDList ?? [] {
             let items = contentKeyId.components(separatedBy: "assetId=")
             if (items.count >= 2){
-                contentKeyIdentifier = items[1]
+                let updatedItem = items[1].components(separatedBy: "&")
+                contentKeyIdentifier = updatedItem[0]
             }
             
         }
@@ -218,7 +220,6 @@ extension ContentKeyDelegate {
         
         do {
             try FileManager.default.removeItem(at: contentKeyURL)
-            
             UserDefaults.standard.removeObject(forKey: "\(contentKeyIdentifier)-Key")
         } catch {
             print("An error occured removing the persisted content key: \(error)")

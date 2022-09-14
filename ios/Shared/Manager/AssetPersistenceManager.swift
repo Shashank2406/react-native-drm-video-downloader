@@ -166,6 +166,16 @@ public class AssetPersistenceManager: NSObject {
     func deleteAsset(_ asset: Asset) {
         let userDefaults = UserDefaults.standard
         
+        userDefaults.removeObject(forKey: asset.stream.name)
+        
+        var userInfo = [String: Any]()
+        userInfo[Asset.Keys.name] = asset.stream.name
+        userInfo[Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+        
+        NotificationCenter.default.post(name: .AssetDownloadStateChanged, object: nil,
+                                        userInfo: userInfo)
+
+        
         do {
             if let localFileLocation = localAssetForStream(withName: asset.stream.name)?.url {
                 try FileManager.default.removeItem(at: localFileLocation)
@@ -272,7 +282,10 @@ extension AssetPersistenceManager: AVAssetDownloadDelegate {
                  This task was canceled, you should perform cleanup using the
                  URL saved from AVAssetDownloadDelegate.urlSession(_:assetDownloadTask:didFinishDownloadingTo:).
                  */
-                guard let localFileLocation = localAssetForStream(withName: asset.stream.name)?.url else { return }
+                userInfo[Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+                guard let localFileLocation = localAssetForStream(withName: asset.stream.name)?.url else {
+                    NotificationCenter.default.post(name: .AssetDownloadStateChanged, object: nil, userInfo: userInfo)
+                    return }
                 
                 do {
                     try FileManager.default.removeItem(at: localFileLocation)
