@@ -23,7 +23,7 @@ class DrmVideoDownloader: RCTEventEmitter {
         if Utils.isValidRequest(videoRequestModel: videoRequestModel), let asset = videoRequestModel?.toAsset() {
             let state = AssetPersistenceManager.sharedManager.downloadState(for: asset)
             ret = state == .downloaded
-            resolve(state == .downloaded ? 1: 0)
+            resolve(state == .downloaded ? true: false)
         } else {
             reject("1000", "The request is invalid", nil)
         }
@@ -81,8 +81,8 @@ class DrmVideoDownloader: RCTEventEmitter {
             if state == .downloaded || state == .failed {
                 self.deleteDownload(asset: asset)
             } else {
-                self.deleteDownload(asset: asset)
                 self.cancelDownload(asset: asset)
+                
             }
             resolve(true)
         } else {

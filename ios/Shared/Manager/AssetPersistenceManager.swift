@@ -137,7 +137,7 @@ public class AssetPersistenceManager: NSObject {
             let urlAsset = AVURLAsset(url: url)
             return urlAsset
         } catch {
-            fatalError("Failed to create URL from bookmark with error: \(error)")
+            return nil
         }
         return nil
     }
@@ -156,6 +156,7 @@ public class AssetPersistenceManager: NSObject {
         for (_, assetValue) in activeDownloadsMap where asset.stream.name == assetValue.stream.name {
             return .downloading
         }
+        
         if (ContentKeyManager.shared.contentKeyDelegate.persistableContentKeyExistsOnDisk(forAsset: asset)){
             return .failed
         }
@@ -166,15 +167,15 @@ public class AssetPersistenceManager: NSObject {
     func deleteAsset(_ asset: Asset) {
         let userDefaults = UserDefaults.standard
         
-        userDefaults.removeObject(forKey: asset.stream.name)
-        
-        var userInfo = [String: Any]()
-        userInfo[Asset.Keys.name] = asset.stream.name
-        userInfo[Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
-        
-        NotificationCenter.default.post(name: .AssetDownloadStateChanged, object: nil,
-                                        userInfo: userInfo)
-
+//        userDefaults.removeObject(forKey: asset.stream.name)
+//
+//        var userInfo = [String: Any]()
+//        userInfo[Asset.Keys.name] = asset.stream.name
+//        userInfo[Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+//
+//        NotificationCenter.default.post(name: .AssetDownloadStateChanged, object: nil,
+//                                        userInfo: userInfo)
+    
         
         do {
             if let localFileLocation = localAssetForStream(withName: asset.stream.name)?.url {
@@ -283,6 +284,14 @@ extension AssetPersistenceManager: AVAssetDownloadDelegate {
                  URL saved from AVAssetDownloadDelegate.urlSession(_:assetDownloadTask:didFinishDownloadingTo:).
                  */
                 userInfo[Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+                do {
+                    let bookmark = try downloadURL.bookmarkData()
+                    
+                    userDefaults.set(bookmark, forKey: asset.stream.name)
+                } catch {
+                    print("Failed to create bookmarkData for download URL.")
+                }
+                
                 guard let localFileLocation = localAssetForStream(withName: asset.stream.name)?.url else {
                     NotificationCenter.default.post(name: .AssetDownloadStateChanged, object: nil, userInfo: userInfo)
                     return }
@@ -301,7 +310,7 @@ extension AssetPersistenceManager: AVAssetDownloadDelegate {
                 fatalError("Downloading HLS streams is not supported in the simulator.")
                 
             default:
-                fatalError("An unexpected error occured \(error.domain)")
+                print("Filed due to network unreachability")
             }
         } else {
             do {

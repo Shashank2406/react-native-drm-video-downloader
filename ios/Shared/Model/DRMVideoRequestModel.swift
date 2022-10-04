@@ -33,11 +33,13 @@ class DRMVideoRequestModel {
 
 extension DRMVideoRequestModel {
     func toAsset() -> Asset? {
-        let stream = Stream.init(name: self.id ?? "", isProtected: true, contentKeyIDList: self.contentKeyIds, playlistURL: self.url ?? "",licenseUrl: self.licenseUrl ,header: self.drmLicenseRequestHeaders)
-        let localAssetUrl = self.getLocalAssetUrl(stream: stream)
-        let asset = Asset.init(stream: stream, urlAsset: localAssetUrl ?? AVURLAsset(url: URL(string: stream.playlistURL)!) )
-        return asset
-    }
+               let stream = Stream.init(name: self.id ?? "", isProtected: true, contentKeyIDList: self.contentKeyIds, playlistURL: self.url ?? "",licenseUrl: self.licenseUrl ,header: self.drmLicenseRequestHeaders)
+                let localAssetUrl = self.getLocalAssetUrl(stream: stream)
+               guard let url = URL.init(string: stream.playlistURL) else { return nil }
+               let urlAsset =  AVURLAsset(url: url)
+               let asset = Asset.init(stream: stream, urlAsset: localAssetUrl ?? urlAsset )
+               return asset
+           }
     
     
     func getLocalAssetUrl(stream: Stream) -> AVURLAsset? {
@@ -57,7 +59,7 @@ extension DRMVideoRequestModel {
             let urlAsset = AVURLAsset(url: url)
             return urlAsset
         } catch {
-            fatalError("Failed to create URL from bookmark with error: \(error)")
+            return nil
         }
         return nil
     }
