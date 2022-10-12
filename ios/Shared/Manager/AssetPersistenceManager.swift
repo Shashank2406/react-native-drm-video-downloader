@@ -10,8 +10,12 @@
 
 import Foundation
 import AVFoundation
+import Network
 
-public class AssetPersistenceManager: NSObject {
+
+public class AssetPersistenceManager: NSObject, NetworkCheckObserver {
+ 
+    
     // MARK: Properties
     
     /// Singleton for AssetPersistenceManager.
@@ -32,12 +36,15 @@ public class AssetPersistenceManager: NSObject {
     fileprivate var shouldUpdateProgressChanged = false
     
     var delegate: DrmVideoDownloaderDelegate?
+    var rechability =  NetworkRechability.sharedInstance()
     
     // MARK: Intialization
     
     override private init() {
         
         super.init()
+        
+        rechability.addObserver(observer: self)
         
         // Create the configuration for the AVAssetDownloadURLSession.
         let backgroundConfiguration = URLSessionConfiguration.background(withIdentifier: "AAPL-Identifier")
@@ -221,6 +228,19 @@ public class AssetPersistenceManager: NSObject {
         task?.resume()
     }
 
+    // check if internet available
+    
+    func statusDidChange(status: NWPath.Status) {
+        if status == .satisfied {
+            activeDownloadsMap.forEach { key , asset in
+                self.resumeDownload(for: asset)
+            }
+        } else {
+            activeDownloadsMap.forEach { key , asset in
+                self.pauseDownload(for: asset)
+            }
+        }
+    }
 }
 
 /// Return the display names for the media selection options that are currently selected in the specified group
